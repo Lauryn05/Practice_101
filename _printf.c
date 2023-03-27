@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 	int a, b, len;
 
 	va_start(argue, format);
-	if(!format || (format[0] == '%' && !format[1]))
+	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
 	while (format[a] != '\0')
 	{

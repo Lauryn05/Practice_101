@@ -7,13 +7,13 @@
 /**
  * struct printing - matches conversion specifiers for printf
  * @c: char pointer of specifier eg: d, i, s, c, %
- * @f: pointer to function 
+ * @f: pointer to function
  */
 typedef struct printing
 {
 	char *c;
 	int (*f)();
-}pt;
+} pt;
 /* _printf */
 int _printf(const char *format, ...);
 
