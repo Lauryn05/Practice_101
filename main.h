@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <limits.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -20,9 +21,10 @@ int _printf(const char *format, ...);
 /*print specification*/
 int print_char(va_list l);
 int print_int(va_list l);
+int print_dec(va_list l);
 int print_per(void);
 int print_string(va_list l);
 int _strlen(char *c);
 int _putchar(char c);
-
+int print_bin(va_list l);
 #endif

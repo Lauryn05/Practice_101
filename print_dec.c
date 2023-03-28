@@ -1,10 +1,10 @@
 #include "main.h"
 /**
- * print_int - prints integer
+ * print_dec - prints decimal
  * @l: argument
  * Return: number of characters printed
  */
-int print_int(va_list l)
+int print_dec(va_list l)
 {
 	int n = va_arg(l, int);
 	int num, digit, last, exp, a;

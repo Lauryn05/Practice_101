@@ -11,11 +11,13 @@ int _printf(const char *format, ...)
 		{"%s", print_string},
 		{"%d", print_int},
 		{"%i", print_int},
-		{"%%", print_per}
+		{"%%", print_per},
+		{"%b", print_bin}
 	};
 	va_list argue;
 	int a, b, len;
 
+Here:
 	va_start(argue, format);
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
@@ -28,6 +30,7 @@ int _printf(const char *format, ...)
 			{
 				len = len + func_ar[b].f(argue);
 				a = a + 2;
+				goto Here;
 			}
 			b--;
 		}
