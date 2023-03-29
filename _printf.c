@@ -30,10 +30,14 @@ int _printf(const char *format, ...)
 			flags = get_flags(format, &a);
 			width = get_width(format, &a, argue);
 			precision = get_precision(format, &a, argue);
-			size = get_size(format, &a, argue, buffer, flags, width, precision, size);
+			size = get_size(format, &a);
+			++a;
+			b = print_sign(format, &a, argue,
+					buffer, flags, width, precision, size);
+
 			if (len == -1)
 				return (-1);
-			len = b;
+			len += b;
 		}
 	}
 	print_buffer(buffer, &buff_ind);

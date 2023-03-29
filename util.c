@@ -3,7 +3,6 @@
  * convert_size_unsign - Casts a number to the specified size
  * @num: Number to be casted
  * @size: Number indicating the type to be casted
- *
  * Return: Casted value of num
  */
 long int convert_size_unsign(unsigned long int num, int size)
@@ -12,7 +11,6 @@ long int convert_size_unsign(unsigned long int num, int size)
 		return (num);
 	else if (size == S_SHORT)
 		return ((unsigned short)num);
-
 	return ((unsigned int)num);
 
 /**
@@ -70,8 +68,7 @@ int is_digit(char c)
 /**
  * convert_size_number - Casts a number to the specified size
  * @num: Number to be casted.
- * @size: Number indicating the type to be casted.
- *
+ * @size: Number indicating the type to be cased.
  * Return: Casted value of num
  */
 long int convert_size_number(long int num, int size)
@@ -80,6 +77,5 @@ long int convert_size_number(long int num, int size)
 		return (num);
 	else if (size == S_SHORT)
 		return ((short)num);
-
 	return ((int)num);
 }

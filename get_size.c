@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * get_size - Calculates the size to cast the argument
  * @format: Formatted string in which to print the arguments
@@ -16,11 +15,9 @@ int get_size(const char *format, int *i)
 		size = S_LONG;
 	else if (format[b] == 'h')
 		size = S_SHORT;
-
 	if (size == 0)
 		*i = b - 1;
 	else
 		*i = b;
-
 	return (size);
 }

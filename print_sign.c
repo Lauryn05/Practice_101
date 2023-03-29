@@ -25,26 +25,26 @@ int print_sign(const char *f, int *ind, va_list l, char buffer[],
 		{'r', print_rev}, {'R', print_rot13},
 		{'\0', NULL}
 	};
-	for (a = 0; signs[a].fmt != '\0'; a++)
-		if (fmt[*ind] == signs[a].fmt)
-			return (signs[a].fn(l, buffer, flags, width, precision, size));
-	if (signs[a].fmt == '\0')
+	for (a = 0; signs[a].f != '\0'; a++)
+		if (f[*ind] == signs[a].f)
+			return (signs[a].f(l, buffer, flags, width, precision, size));
+	if (signs[a].f == '\0')
 	{
-		if (fmt[*ind] == '\0')
+		if (f[*ind] == '\0')
 			return (-1);
 		b += write(1, "%%", 1);
-		if (fmt[*ind - 1] == ' ')
+		if (f[*ind - 1] == ' ')
 			b += write(1, " ", 1);
 		else if (width)
 		{
 			--(*ind);
-			while (fmt[*ind] != ' ' && fmt[*ind] != '%')
+			while (f[*ind] != ' ' && f[*ind] != '%')
 				--(*ind);
-			if (fmt[*ind] == ' ')
+			if (f[*ind] == ' ')
 				--(*ind);
 			return (1);
 		}
-		b += write(1, &fmt[*ind], 1);
+		b += write(1, &f[*ind], 1);
 		return (b);
 	}
 	return (len);

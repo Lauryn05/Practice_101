@@ -36,20 +36,20 @@ int write_num(int ind, char buffer[], int flags, int width,
 		{
 			if (extra_c)
 				buffer[--ind] = extra_c;
-			return (fwrite(1, &buffer[ind], len) + fwrite(1, &buffer[1], a - 1));
+			return (write(1, &buffer[ind], len) + write(1, &buffer[1], a - 1));
 		}
 		else if (!(flags & F_MINUS) && padd == ' ')
 		{
 			if (extra_c)
 				buffer[--ind] = extra_c;
-			return (fwrite(1, &buffer[1], a - 1) + fwrite(1, &buffer[ind], len));
+			return (write(1, &buffer[1], a - 1) + write(1, &buffer[ind], len));
 		}
 		else if (!(flags & F_MINUS) && padd == '0')
 		{
 			if (extra_c)
 				buffer[--begin_padd] = extra_c;
-			return (fwrite(1, &buffer[begin_padd], a - begin_padd) +
-					fwrite(1, &buffer[ind], len - (1 - begin_padd)));
+			return (write(1, &buffer[begin_padd], a - begin_padd) +
+					write(1, &buffer[ind], len - (1 - begin_padd)));
 		}
 	}
 	if (extra_c)

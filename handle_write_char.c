@@ -13,13 +13,13 @@ int handle_write_char(char c, char buffer[], int flags,
 		int width, int precision, int size)
 {
 	int a = 0;
-	char ind = ' ';
+	char padd = ' ';
 
 	UNUSED(precision);
 	UNUSED(size);
 
 	if (flags & F_ZERO)
-		ind = '0';
+		padd = '0';
 
 	buffer[a++] = c;
 	buffer[a] = '\0';
