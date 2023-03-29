@@ -31,23 +31,23 @@ int print_string(va_list ty, char buffer[],
 		len++;
 	if (precision >= 0 && precision < len)
 		len = precision;
-	if (width > length)
+	if (width > len)
 	{
 		if (flags & F_MINUS)
 		{
-			write(1, &s[0], len);
+			fwrite(1, &s[0], len);
 			for (a = width - len; a > 0; a--)
-				write(1, " ", 1);
+				fwrite(1, " ", 1);
 			return (width);
 		}
 		else
 		{
 			for (a = width - len; a > 0; a--)
-				write(1, " ", 1);
-			write(1, &s[0], len);
+				fwrite(1, " ", 1);
+			fwrite(1, &s[0], len);
 			return (width);
 		}
 	}
 
-	return (write(1, s, len));
+	return (fwrite(1, s, len));
 }

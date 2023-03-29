@@ -1,33 +1,45 @@
 #include "main.h"
 /**
- * print_bin - prints binary
- * @l: arguments
- * Return: 1
+ * print_bin - Prints binary
+ * @ty: List of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Numbers of char printed.
  */
-int print_bin(va_list l)
+int print_bin(va_list ty, char buffer[],
+	int flags, int width, int precision, int size)
 {
-	int flag, cont, a, b, i;
-	unsigned int num, p;
+	unsigned int n, m, i, sum;
+	unsigned int a[32];
+	int count;
 
-	cont = 0;
-	a = 1;
-	num = va_arg(l, unsigned int);
-	for (i = 0; i < 32; i++)
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
+
+	n = va_arg(ty, unsigned int);
+	m = 2147483648;
+	a[0] = n / m;
+	for (i = 1; i < 32; i++)
 	{
-		p = ((a << (31 + i)) & num);
-		if (p >> (31 - i))
-			flag = 1;
-		if (flag)
+		m /= 2;
+		a[i] = (n / m) % 2;
+	}
+	for (i = 0, sum = 0, count = 0; i < 32; i++)
+	{
+		sum += a[i];
+		if (sum || i == 31)
 		{
-			b = p >> (31 - i);
-			_putchar(b + 48);
-			cont++;
-		}
-		if (cont == 0)
-		{
-			cont++;
-			_putchar('0');
+			char z = '0' + a[i];
+
+			write(1, &z, 1);
+			count++;
 		}
 	}
-	return (cont);
+	return (count);
 }

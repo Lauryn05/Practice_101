@@ -71,11 +71,11 @@ int print_rot13(va_list ty, char buffer[], int flags, int width, int precision, 
 void print_buffer(char buffer[], int *buff_ind);
 
 /*widh handling*/
-int handle_write_char(va_list ty, char buffer[], int flags, int width, int precision, int size);
-int write_number(va_list ty, char buffer[], int flags, int width, int precision, int size);
-int write_num(va_list ty, char buffer[], int flags, int width, int precision, int size);
-int write_point(va_list ty, char buffer[], int flags, int width, int precision, int size);
-int write_unsign(va_list ty, char buffer[], int flags, int width, int precision, int size);
+int handle_write_char(char c, char buffer[], int flags, int width, int precision, int size);
+int write_number(int is_neg, int ind, char buffer[], int flags, int width, int precision, int size);
+int write_num(int ind, char buffer[], int flags, int width, int precision, int size, int len, char padd, char extra_c);
+int write_point(char buffer[], int ind, int len, int width, int flags, char padd, int extra_c, int begin_padd);
+int write_unsign(int is_neg, int ind, char buffer[], int flags, int width, int precision, int size);
 
 /*Utils*/
 int is_printable(char);
