@@ -28,7 +28,7 @@ int handle_write_char(char c, char buffer[], int flags,
 	{
 		buffer[BUFF_SIZE - 1] = '\0';
 		for (a = 0; a < width - 1; a++)
-			buffer[BUFF_SIZE - a - 2] = ind;
+			buffer[BUFF_SIZE - a - 2] = padd;
 
 		if (flags & F_MINUS)
 			return (write(1, &buffer[0], 1) +

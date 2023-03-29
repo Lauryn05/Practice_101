@@ -27,7 +27,7 @@ int write_point(char buffer[], int ind, int len,
 			buffer[--ind] = '0';
 			if (extra_c)
 				buffer[--ind] = extra_c;
-			return (write(1, &buffer[ind], len) + write(1, &buffer[3], i - 3));
+			return (write(1, &buffer[ind], len) + write(1, &buffer[3], a - 3));
 		}
 		else if (!(flags & F_MINUS) && padd == ' ')
 		{

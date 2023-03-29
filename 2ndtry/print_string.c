@@ -35,19 +35,19 @@ int print_string(va_list ty, char buffer[],
 	{
 		if (flags & F_MINUS)
 		{
-			fwrite(1, &s[0], len);
+			write(1, &s[0], len);
 			for (a = width - len; a > 0; a--)
-				fwrite(1, " ", 1);
+				write(1, " ", 1);
 			return (width);
 		}
 		else
 		{
 			for (a = width - len; a > 0; a--)
-				fwrite(1, " ", 1);
-			fwrite(1, &s[0], len);
+				write(1, " ", 1);
+			write(1, &s[0], len);
 			return (width);
 		}
 	}
 
-	return (fwrite(1, s, len));
+	return (write(1, s, len));
 }

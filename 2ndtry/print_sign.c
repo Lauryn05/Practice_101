@@ -17,7 +17,7 @@ int print_sign(const char *f, int *ind, va_list l, char buffer[],
 	int a, b = 0, len = -1;
 	pt signs[] = {
 		{'c', print_char}, {'s', print_string},
-		{'%', print_percent}, {'i', print_int},
+		{'%', print_per}, {'i', print_int},
 		{'d', print_int}, {'b', print_bin},
 		{'u', print_unsigned}, {'o', print_octal},
 		{'x', print_hexadec}, {'X', print_hexa_upper},
@@ -25,12 +25,12 @@ int print_sign(const char *f, int *ind, va_list l, char buffer[],
 		{'r', print_rev}, {'R', print_rot13},
 		{'\0', NULL}
 	};
-	for (a = 0; signs[a].f != '\0'; a++)
-		if (f[*ind] == signs[a].f)
-			return (signs[a].f(l, buffer, flags, width, precision, size));
-	if (signs[a].f == '\0')
+	for (a = 0; signs[a].pt != '\0'; a++)
+		if (pt[*ind] == signs[a].pt)
+			return (signs[a].pt(l, buffer, flags, width, precision, size));
+	if (signs[a].pt == '\0')
 	{
-		if (f[*ind] == '\0')
+		if (pt[*ind] == '\0')
 			return (-1);
 		b += write(1, "%%", 1);
 		if (f[*ind - 1] == ' ')
@@ -38,13 +38,13 @@ int print_sign(const char *f, int *ind, va_list l, char buffer[],
 		else if (width)
 		{
 			--(*ind);
-			while (f[*ind] != ' ' && f[*ind] != '%')
+			while (pt[*ind] != ' ' && pt[*ind] != '%')
 				--(*ind);
-			if (f[*ind] == ' ')
+			if (pt[*ind] == ' ')
 				--(*ind);
 			return (1);
 		}
-		b += write(1, &f[*ind], 1);
+		b += write(1, &pt[*ind], 1);
 		return (b);
 	}
 	return (len);

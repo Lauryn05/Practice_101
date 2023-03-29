@@ -45,9 +45,8 @@ int print_unsigned(va_list ty, char buffer[],
 int print_octal(va_list ty, char buffer[],
 	int flags, int width, int precision, int size)
 {
-
 	int i = BUFF_SIZE - 2;
-	unsigned long int num = va_argi(ty, unsigned long int);
+	unsigned long int num = va_arg(ty, unsigned long int);
 	unsigned long int init_num = num;
 
 	UNUSED(width);
@@ -98,7 +97,7 @@ int print_hexadec(va_list ty, char buffer[],
  * @size: Size specifier
  * Return: Number of chars printed
  */
-int print_hexa_upper(va_list types, char buffer[],
+int print_hexa_upper(va_list ty, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	return (print_hexa(ty, "0123456789ABCDEF", buffer,

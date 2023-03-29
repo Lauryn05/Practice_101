@@ -3,7 +3,6 @@
 
 #include <stdlib.h>
 #include <stdarg.h>
-#include <stdio.h>
 #include <unistd.h>
 
 #define UNUSED(x) (void)(x)
