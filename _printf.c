@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * _printf - selects a function to print
  * @format: identifier
@@ -6,38 +7,36 @@
  */
 int _printf(const char *format, ...)
 {
-	pt func_ar[] = {
-		{"%c", print_char},
-		{"%s", print_string},
-		{"%d", print_int},
-		{"%i", print_int},
-		{"%%", print_per},
-		{"%b", print_bin}
-	};
 	va_list argue;
 	int a, b, len;
+	int flags, width, precision, size, buff_ind;
+	char buffer[BUFF_SIZE];
 
-Here:
 	va_start(argue, format);
-	if (!format || (format[0] == '%' && !format[1]))
+	if (format = NULL)
 		return (-1);
-	while (format[a] != '\0')
+	for (a = 0; format && format[a] != '\0'; a++)
 	{
-		b = 4;
-		while (b >= 0)
+		if (format[a] != '%')
 		{
-			if (func_ar[b].c[0] == format[a] && func_ar[a].c[1] == format[a + 1])
-			{
-				len = len + func_ar[b].f(argue);
-				a = a + 2;
-				goto Here;
-			}
-			b--;
+			buffer[buff_ind++] = format[a];
+			if (buff_ind == BUFF_SIZE)
+				print_buffer(buffer, &buff_ind);
+			len++;
 		}
-		_putchar(format[a]);
-		a++;
-		len++;
+		else
+		{
+			print_buffer(buffer, &buff_ind);
+			flags = get_flags(format, &a);
+			width = get_width(format, &a, argue);
+			precision = get_precision(format, &a, argue);
+			size = get_size(format, &a, argue, buffer, flags, width, precision, size);
+			if (len == -1)
+				return (-1);
+			len = b;
+		}
 	}
+	print_buffer(buffer, &buff_ind);
 	va_end(argue);
 	return (len);
 }
