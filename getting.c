@@ -7,26 +7,23 @@
  */
 int get_flags(const char *format, int *i)
 {
-	int j, curr_i;
+	int j, curr;
 	int flags = 0;
 	const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
 	const int FLAGS_ARR[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
 
-	for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
+	for (curr = *i + 1; format[curr] != '\0'; curr++)
 	{
 		for (j = 0; FLAGS_CH[j] != '\0'; j++)
-			if (format[curr_i] == FLAGS_CH[j])
+			if (format[curr] == FLAGS_CH[j])
 			{
 				flags |= FLAGS_ARR[j];
 				break;
 			}
-
 		if (FLAGS_CH[j] == 0)
 			break;
 	}
-
-	*i = curr_i - 1;
-
+	*i = curr - 1;
 	return (flags);
 }
 #include "main.h"
@@ -39,33 +36,29 @@ int get_flags(const char *format, int *i)
  */
 int get_precision(const char *format, int *i, va_list list)
 {
-	int curr_i = *i + 1;
+	int curr = *i + 1;
 	int precision = -1;
 
-	if (format[curr_i] != '.')
+	if (format[curr] != '.')
 		return (precision);
-
 	precision = 0;
-
-	for (curr_i += 1; format[curr_i] != '\0'; curr_i++)
+	for (curr += 1; format[curr] != '\0'; curr++)
 	{
-		if (is_digit(format[curr_i]))
+		if (is_digit(format[curr]))
 		{
 			precision *= 10;
-			precision += format[curr_i] - '0';
+			precision += format[curr] - '0';
 		}
-		else if (format[curr_i] == '*')
+		else if (format[curr] == '*')
 		{
-			curr_i++;
+			curr++;
 			precision = va_arg(list, int);
 			break;
 		}
 		else
 			break;
 	}
-
-	*i = curr_i - 1;
-
+	*i = curr - 1;
 	return (precision);
 }
 #include "main.h"
@@ -77,19 +70,17 @@ int get_precision(const char *format, int *i, va_list list)
  */
 int get_size(const char *format, int *i)
 {
-	int curr_i = *i + 1;
+	int curr = *i + 1;
 	int size = 0;
 
-	if (format[curr_i] == 'l')
+	if (format[curr] == 'l')
 		size = S_LONG;
-	else if (format[curr_i] == 'h')
+	else if (format[curr] == 'h')
 		size = S_SHORT;
-
 	if (size == 0)
-		*i = curr_i - 1;
+		*i = curr - 1;
 	else
-		*i = curr_i;
-
+		*i = curr;
 	return (size);
 }
 #include "main.h"
@@ -103,27 +94,25 @@ int get_size(const char *format, int *i)
  */
 int get_width(const char *format, int *i, va_list list)
 {
-	int curr_i;
+	int curr;
 	int width = 0;
 
-	for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
+	for (curr = *i + 1; format[curr] != '\0'; curr++)
 	{
-		if (is_digit(format[curr_i]))
+		if (is_digit(format[curr]))
 		{
 			width *= 10;
-			width += format[curr_i] - '0';
+			width += format[curr] - '0';
 		}
-		else if (format[curr_i] == '*')
+		else if (format[curr] == '*')
 		{
-			curr_i++;
+			curr++;
 			width = va_arg(list, int);
 			break;
 		}
 		else
 			break;
 	}
-
-	*i = curr_i - 1;
-
+	*i = curr - 1;
 	return (width);
 }

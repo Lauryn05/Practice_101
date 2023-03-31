@@ -43,13 +43,10 @@ int print_string(va_list types, char buffer[],
 		if (precision >= 6)
 			str = "      ";
 	}
-
 	while (str[length] != '\0')
 		length++;
-
 	if (precision >= 0 && precision < length)
 		length = precision;
-
 	if (width > length)
 	{
 		if (flags & F_MINUS)
@@ -67,12 +64,11 @@ int print_string(va_list types, char buffer[],
 			return (width);
 		}
 	}
-
 	return (write(1, str, length));
 }
 /**
  * print_percent - Prints a percent sign
- * @types: Lista of arguments
+ * @types: Lisa of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
@@ -93,7 +89,7 @@ int print_percent(va_list types, char buffer[],
 }
 /**
  * print_int - Print int
- * @types: Lista of arguments
+ * @types: List of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width.
@@ -113,24 +109,19 @@ int print_int(va_list types, char buffer[],
 
 	if (n == 0)
 		buffer[i--] = '0';
-
 	buffer[BUFF_SIZE - 1] = '\0';
 	num = (unsigned long int)n;
-
 	if (n < 0)
 	{
 		num = (unsigned long int)((-1) * n);
 		is_negative = 1;
 	}
-
 	while (num > 0)
 	{
 		buffer[i--] = (num % 10) + '0';
 		num /= 10;
 	}
-
 	i++;
-
 	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 /**
